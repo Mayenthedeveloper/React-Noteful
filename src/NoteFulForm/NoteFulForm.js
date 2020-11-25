@@ -1,6 +1,6 @@
 
 import React from 'react'
-import './NotefulForm.css'
+import './NoteFulForm.css'
 
 export default function NotefulForm(props) {
   const { className, ...otherProps } = props

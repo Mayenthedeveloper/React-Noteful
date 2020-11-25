@@ -5,7 +5,7 @@ import { faPlus, faChevronLeft, faTrashAlt, faCheckDouble } from "@fortawesome/f
 import { BrowserRouter } from 'react-router-dom';
 import './index.css';
 import 'typeface-roboto';
-import App from './App';
+import App from './App/App';
 
 
 library.add(faPlus, faChevronLeft, faTrashAlt, faCheckDouble)
