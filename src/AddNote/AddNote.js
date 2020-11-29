@@ -3,6 +3,7 @@ import Note from "../Note/Note";
 import ApiContext from '../ApiContext'
 import config from '../config'
 import  NoteFulForm from '../NoteFulForm/NoteFulForm';
+import PropTypes from 'prop-types';
 import './AddNote.css';
 
 
@@ -22,8 +23,10 @@ export default class AddNote extends Component{
           content: e.target['note-content'].value,
           folderId: e.target['note-folder-id'].value,
           modified: new Date(),
+
+
         }
-        fetch(`${config.API_ENDPOINT}/notes`, {
+        fetch(`${config.API_ENDPOINT}notes`, {
           method: 'POST',
           headers: {
             'content-type': 'application/json'
@@ -86,3 +89,7 @@ export default class AddNote extends Component{
         )
       }
     }
+
+AddNote.propTypes ={
+    history: PropTypes.object
+};

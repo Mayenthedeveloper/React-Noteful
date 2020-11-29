@@ -3,6 +3,7 @@ import React, { Component } from 'react'
 import NoteFulForm from '../NoteFulForm/NoteFulForm'
 import ApiContext from '../ApiContext'
 import config from '../config'
+import PropTypes from 'prop-types';
 // import './AddFolder.css'
 
 export default class AddFolder extends Component {
@@ -14,11 +15,12 @@ export default class AddFolder extends Component {
   static contextType = ApiContext;
 
   handleSubmit = e => {
+      console.log(this.context)
     e.preventDefault()
     const folder = {
-      name: e.target['folder-name'].value
+      name: e.target['folder-name-input'].value
     }
-    fetch(`${config.API_ENDPOINT}/folders`, {
+    fetch(`${config.API_ENDPOINT}folders`, {
       method: 'POST',
       headers: {
         'content-type': 'application/json'
@@ -60,3 +62,8 @@ export default class AddFolder extends Component {
     )
   }
 }
+
+
+AddFolder.proptype ={
+    history: PropTypes.object
+};

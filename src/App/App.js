@@ -10,12 +10,19 @@ import AddNote from '../AddNote/AddNote'
 import ApiContext from '../ApiContext'
 import config from '../config'
 import './App.css'
+import NoteError from '../ErrorPages/NoteError'
+import FolderError from '../ErrorPages/FolderError'
 
 class App extends Component {
   state = {
     notes: [],
     folders: [],
+    hasError: false
   };
+
+  static getDerivedStateFromError(error){
+        this.setState({hasError : true});
+  }
 
   componentDidMount() {
     
@@ -96,25 +103,26 @@ class App extends Component {
   renderMainRoutes() {
     return (
       <>
+      {console.log(this.state.hasError)}
         {['/', '/folder/:folderId'].map(path =>
           <Route
             exact
             key={path}
             path={path}
-            component={NoteListMain}
+            component= { this.state.hasError ? NoteError : NoteListMain  }
           />
         )}
         <Route
           path='/note/:noteId'
-          component={NotePageMain}
+          component={ this.state.hasError ? FolderError :NotePageMain}
         />
         <Route
           path='/add-folder'
-          component={AddFolder}
+          component={ this.state.hasError ? FolderError :  AddFolder}
         />
         <Route
           path='/add-note'
-          component={AddNote}
+          component={ this.state.hasError ? NoteError :AddNote}
         />
       </>
     )

@@ -4,11 +4,12 @@ import { format } from 'date-fns'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import ApiContext from '../ApiContext'
 import config from '../config'
+import PropTypes from 'prop-types';
 import './Note.css'
 
 export default class Note extends React.Component {
   static defaultProps ={
-    onDeleteNote: () => {},
+   // onDeleteNote: () => {},
   }
   static contextType = ApiContext;
 
@@ -16,7 +17,7 @@ export default class Note extends React.Component {
     e.preventDefault()
     const noteId = this.props.id
 
-    fetch(`${config.API_ENDPOINT}/notes/${noteId}`, {
+    fetch(`${config.API_ENDPOINT}notes/${noteId}`, {
       method: 'DELETE',
       headers: {
         'content-type': 'application/json'
@@ -29,8 +30,7 @@ export default class Note extends React.Component {
       })
       .then(() => {
         this.context.deleteNote(noteId)
-        // allow parent to perform extra behaviour
-        this.props.onDeleteNote(noteId)
+      
       })
       .catch(error => {
         console.error({ error })
@@ -73,6 +73,7 @@ export default class Note extends React.Component {
   }
 }
 
-
-// let date = new Date(props.modified)
-// {date.toDateString()}
+Note.propTypes ={
+  id: PropTypes.string
+  
+}
