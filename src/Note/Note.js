@@ -40,8 +40,10 @@ export default class Note extends React.Component {
  
 
   render() {
+    
     const { name, id, modified } = this.props
-    let modDate = new Date(modified)
+    
+    // let modDate = new Date(modified)
 
     return (
       <div className='Note'>
@@ -64,7 +66,7 @@ export default class Note extends React.Component {
             Modified
             {' '}
             <span className='Date'>
-              {format(modDate, 'dd MMM yyyy')}
+              {modified}
             </span>
           </div>
         </div>
@@ -74,6 +76,6 @@ export default class Note extends React.Component {
 }
 
 Note.propTypes ={
-  id: PropTypes.string
+  id: PropTypes.number
   
 }

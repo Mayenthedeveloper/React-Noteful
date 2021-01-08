@@ -20,9 +20,9 @@ class App extends Component {
     hasError: false
   };
 
-  static getDerivedStateFromError(error){
-        this.setState({hasError : true});
-  }
+  // static getDerivedStateFromError(error){
+  //       this.setState({hasError : true});
+  // }
 
   componentDidMount() {
     
@@ -42,6 +42,7 @@ class App extends Component {
         ])
       })
       .then(([notes, folders]) => {
+        console.log(notes, folders)
         this.setState({ notes, folders })
       })
       .catch(error => {
